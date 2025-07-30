@@ -1,0 +1,18 @@
+services:
+  generator-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sports-generator-api
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - sports-network
+    restart: unless-stopped
+
+networks:
+  sports-network:
+    driver: bridge
