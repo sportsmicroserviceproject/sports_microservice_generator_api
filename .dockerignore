@@ -1,0 +1,23 @@
+# .NET build artifacts
+bin/
+obj/
+out/
+
+# Environment files
+.env*
+
+# Git and scripts
+.git/
+.gitignore
+test-local.sh
+README.md
+
+# IDE files
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# Docker files themselves
+Dockerfile*
+docker-compose*
