@@ -14,7 +14,7 @@ public class MatchGeneratorService : IMatchGenerator
         new Team { Id = 6, Name = "Barcelona", League = "La Liga" },
         new Team { Id = 7, Name = "Real Madrid", League = "La Liga" }
     };
-    
+
     private static readonly List<Match> _matches = new();
     private static int _nextMatchId = 1;
     private readonly Random _random = new();
@@ -36,7 +36,7 @@ public class MatchGeneratorService : IMatchGenerator
         var leagues = _teams.GroupBy(t => t.League).ToList();
         var selectedLeague = leagues[_random.Next(leagues.Count)];
         var leagueTeams = selectedLeague.ToList();
-        
+
         if (leagueTeams.Count < 2)
         {
             throw new InvalidOperationException("Not enough teams in league");
@@ -44,7 +44,7 @@ public class MatchGeneratorService : IMatchGenerator
 
         var homeTeam = leagueTeams[_random.Next(leagueTeams.Count)];
         Team awayTeam;
-        
+
         // Ensure different teams
         do
         {
