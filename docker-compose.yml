@@ -5,13 +5,18 @@ services:
       dockerfile: Dockerfile
     container_name: sports-generator-api
     ports:
-      - "5001:80"
+      - "${CONTAINER_PORT:-5001}:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
     networks:
       - sports-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   sports-network:
