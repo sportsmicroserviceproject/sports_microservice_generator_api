@@ -1,16 +1,14 @@
-using SportsGeneratorApi.Services;
+using SportsGeneratorApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add MVC controllers
-builder.Services.AddControllers();
-
-// Register application services
-builder.Services.AddScoped<IMatchGenerator, MatchGeneratorService>();
+// Configure services, using /Extensions for startup configuration and /Services for business logic
+builder.Services.AddApplicationServices();
+builder.Services.AddCorsPolicy();
 
 var app = builder.Build();
 
-// Map controller endpoints
-app.MapControllers();
+// Configure application
+app.ConfigureApplication();
 
 app.Run();
